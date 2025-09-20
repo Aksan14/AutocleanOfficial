@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { BASE_URL } from '../utils/api';
 
 interface ProductCardProps {
   id: string;
@@ -22,26 +23,37 @@ export default function ProductCard({
   tiktokShopUrl,
   shopeeUrl
 }: ProductCardProps) {
+  // Nomor WhatsApp dari response
   const whatsappMessage = `Halo, saya tertarik dengan produk ${name}. Bisakah saya mendapatkan informasi lebih lanjut?`;
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  // Format nomor WA: hilangkan spasi dan karakter non-digit
+  const waNumberClean = whatsappNumber.replace(/\D/g, "");
+  const whatsappUrl = `https://wa.me/${waNumberClean}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // Perbaiki gambar: jika path relatif, tambahkan BASE_URL
+  let imageUrl = image;
+  if (image && image.startsWith("/uploads")) {
+    imageUrl = `${BASE_URL}${image}`;
+  }
+
+  // Link Shopee/TikTok selalu ambil dari response barang
+  const tiktokUrl = tiktokShopUrl;
+  const shopeeUrlFinal = shopeeUrl;
 
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <div className="relative h-64 w-full">
         <Image
-          src={image}
+          src={imageUrl}
           alt={name}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
-      
       <div className="p-6">
         <h3 className="text-xl font-bold text-gray-900 mb-2">{name}</h3>
         <p className="text-gray-600 mb-3 text-sm">{description}</p>
         <p className="text-2xl font-bold text-red-600 mb-4">{price}</p>
-        
         <div className="space-y-3">
           {/* WhatsApp Order Button */}
           <Link
@@ -55,27 +67,32 @@ export default function ProductCard({
             </svg>
             Pesan via WhatsApp
           </Link>
-          
-          <div className="flex space-x-2">
-            {tiktokShopUrl && (
+          <div className="flex space-x-2 mt-2">
+            {tiktokUrl && (
               <Link
-                href={tiktokShopUrl}
+                href={tiktokUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-black hover:bg-gray-800 text-white font-semibold py-2 px-3 rounded-lg flex items-center justify-center transition-colors duration-200"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-black hover:bg-gray-800"
+                title="TikTok Shop"
               >
-                <span className="text-sm">TikTok Shop</span>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M9.5 3v12.25a2.25 2.25 0 1 0 2.25-2.25h-1.25V3h-1z" />
+                  <path d="M15 3v7.25a4.25 4.25 0 1 1-4.25 4.25h1.25A3 3 0 1 0 15 10.25V3h-1z" />
+                </svg>
               </Link>
             )}
-            
-            {shopeeUrl && (
+            {shopeeUrlFinal && (
               <Link
-                href={shopeeUrl}
+                href={shopeeUrlFinal}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-3 rounded-lg flex items-center justify-center transition-colors duration-200"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-orange-500 hover:bg-orange-600"
+                title="Shopee"
               >
-                <span className="text-sm">Shopee</span>
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M4 7V6a4 4 0 0 1 8 0v1h8v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7h0zm2-1a2 2 0 1 1 4 0v1H6V6z" />
+                </svg>
               </Link>
             )}
           </div>

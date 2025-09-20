@@ -38,7 +38,7 @@ export default function Home() {
                 Kontak
               </a>
               <Link 
-                href="/admin" 
+                href="/admin/login" 
                 className="text-red-600 hover:text-red-700 font-medium transition-colors"
               >
                 Admin

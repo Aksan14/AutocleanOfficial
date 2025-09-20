@@ -1,71 +1,56 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import ProductCard from "../../components/ProductCard";
-
-const products = [
-  {
-    id: "1",
-    name: "Vehicle Shampoo",
-    description: "Pembersih mobil dengan formula khusus untuk hasil yang optimal dan aman untuk cat kendaraan",
-    image: "/Vehicle Shampoo Feed 1.png",
-    price: "Rp 45.000",
-    whatsappNumber: "6281234567890",
-    tiktokShopUrl: "https://shop.tiktok.com/autoclean-vehicle-shampoo",
-    shopeeUrl: "https://shopee.co.id/autoclean-vehicle-shampoo"
-  },
-  {
-    id: "2", 
-    name: "Engine Degreaser",
-    description: "Pembersih mesin yang efektif menghilangkan kotoran dan lemak membandel pada mesin kendaraan",
-    image: "/Engine Degreaser Feed 1.png",
-    price: "Rp 55.000",
-    whatsappNumber: "6281234567890",
-    tiktokShopUrl: "https://shop.tiktok.com/autoclean-engine-degreaser",
-    shopeeUrl: "https://shopee.co.id/autoclean-engine-degreaser"
-  },
-  {
-    id: "3",
-    name: "Body Shine",
-    description: "Produk untuk memberikan kilau maksimal pada body kendaraan dan perlindungan jangka panjang",
-    image: "/Body Shine Feed 1.png", 
-    price: "Rp 65.000",
-    whatsappNumber: "6281234567890",
-    tiktokShopUrl: "https://shop.tiktok.com/autoclean-body-shine",
-    shopeeUrl: "https://shopee.co.id/autoclean-body-shine"
-  },
-  {
-    id: "4",
-    name: "Super Black",
-    description: "Perawatan khusus untuk bagian hitam kendaraan seperti bumper dan trim plastik",
-    image: "/Super Black Feed 2.png",
-    price: "Rp 50.000", 
-    whatsappNumber: "6281234567890",
-    tiktokShopUrl: "https://shop.tiktok.com/autoclean-super-black",
-    shopeeUrl: "https://shopee.co.id/autoclean-super-black"
-  },
-  {
-    id: "5",
-    name: "Tire Shine",
-    description: "Pembersih dan pengkilap ban untuk tampilan yang selalu fresh dan berkilau",
-    image: "/Tire Shine Feed 1.png",
-    price: "Rp 40.000",
-    whatsappNumber: "6281234567890", 
-    tiktokShopUrl: "https://shop.tiktok.com/autoclean-tire-shine",
-    shopeeUrl: "https://shopee.co.id/autoclean-tire-shine"
-  }
-];
+import { fetchBarangList } from "../../utils/api";
 
 export default function Products() {
   const [activeFilter, setActiveFilter] = useState("all");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  type Product = {
+    id: string | number;
+    nama_barang: string;
+    deskripsi: string;
+    gambar_url?: string;
+    harga_formatted: string;
+    link_tiktokshop?: string;
+    link_shopee?: string;
+  };
+
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadProducts() {
+      setLoading(true);
+      try {
+        const data = await fetchBarangList();
+        setProducts(data);
+      } catch (err) {
+        // handle error
+      }
+      setLoading(false);
+    }
+    loadProducts();
+  }, []);
 
   const filteredProducts = activeFilter === "all" ? products : products.filter(product => {
     // Add filter logic here if needed
     return true;
   });
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading produk...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
@@ -107,7 +92,7 @@ export default function Products() {
                 Produk
               </Link>
               <Link 
-                href="/admin" 
+                href="/admin/login" 
                 className="flex items-center px-4 py-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg font-medium transition-all duration-200"
               >
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -241,13 +226,26 @@ export default function Products() {
 
           {/* Products Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            {filteredProducts.map((product) => (
-              <div key={product.id} className="group">
-                <div className="transform transition-all duration-300 group-hover:scale-105">
-                  <ProductCard {...product} />
+            {filteredProducts.length === 0 ? (
+              <div className="col-span-3 text-center py-12 text-gray-500">Tidak ada produk ditemukan</div>
+            ) : (
+              filteredProducts.map((product) => (
+                <div key={product.id} className="group">
+                  <div className="transform transition-all duration-300 group-hover:scale-105">
+                    <ProductCard
+                      id={String(product.id)}
+                      name={product.nama_barang}
+                      description={product.deskripsi}
+                      image={product.gambar_url || "/Auto Celan Official Logo.png"}
+                      price={product.harga_formatted}
+                      whatsappNumber="6281234567890"
+                      tiktokShopUrl={product.link_tiktokshop}
+                      shopeeUrl={product.link_shopee}
+                    />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
 
           {/* Call to Action */}
