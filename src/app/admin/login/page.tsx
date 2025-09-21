@@ -158,7 +158,7 @@ export default function AdminLogin() {
 
         {/* Footer */}
         <div className="text-center text-sm text-gray-500">
-          <p>&copy; 2025 AutoClean Official. All rights reserved.</p>
+          <p>&copy; 2025 Coconut Lab • Crafted with ❤️ by pusatweb</p>
         </div>
       </div>
     </div>
