@@ -5,18 +5,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       <Navbar />
 
       {/* Hero Section */}
-      <section id="home" className="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white overflow-hidden">
+      <section id="home" className="relative bg-gradient-to-br from-red-600 via-red-700 to-red-800 text-white overflow-hidden w-full pt-16">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32 text-center">
-          <div className="max-w-4xl mx-auto">
+        <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-24 lg:py-32 text-center">
+          <div className="max-w-4xl mx-auto w-full">
             {/* Badge */}
             <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 text-sm font-medium mb-8">
               <span className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></span>
@@ -77,8 +77,8 @@ export default function Home() {
               </h2>
 
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                AutoClean Official adalah perusahaan yang bergerak di bidang produk perawatan kendaraan
-                dengan komitmen untuk memberikan solusi pembersihan terbaik bagi kendaraan Anda.
+                Autoclean adalah brand penyedia produk perawatan kendaraan yang dirancang untuk menjaga kebersihan, kilau, dan performa baik mobil maupun motor. Kami menyediakan rangkaian produk berkualitas seperti shampo kendaraan, pengkilap bodi, pengkilap ban, dan pembersih kerak mesin yang efektif, aman, dan mudah digunakan.
+
               </p>
 
               <div className="grid grid-cols-2 gap-6 mb-8 max-w-md">
@@ -141,7 +141,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
               Komitmen Kami untuk
-              <span className="text-red-600">Masa Depan</span>
+              <span className="text-red-600"> Masa Depan</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Membangun fondasi yang kuat dengan visi yang jelas dan misi yang terarah

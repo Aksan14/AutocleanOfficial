@@ -8,12 +8,12 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="bg-white/95 backdrop-blur-md border-b border-gray-100 sticky top-0 z-50">
+    <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-100 z-50 shadow-sm w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-3 items-center h-16">
+        <div className="flex items-center justify-between h-16 w-full">
           {/* Logo */}
-          <div className="flex items-center">
-            <Link href="/">
+          <div className="flex items-center flex-shrink-0">
+            <Link href="/" className="flex items-center">
               <Image
                 src="/Auto Celan Official Logo.png"
                 alt="AutoClean Official"
@@ -26,44 +26,48 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation - Center */}
-          <nav className="hidden lg:flex items-center justify-center space-x-4">
-            <Link 
-              href="/" 
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 whitespace-nowrap"
-            >
-              Beranda
-            </Link>
-            <a 
-              href="/#about" 
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 whitespace-nowrap"
-            >
-              Tentang
-            </a>
-            <a 
-              href="/#vision" 
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 whitespace-nowrap"
-            >
-              Visi Misi
-            </a>
-            <Link 
-              href="/products" 
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 whitespace-nowrap"
-            >
-              Produk
-            </Link>
-            <a 
-              href="/#contact" 
-              className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 whitespace-nowrap"
-            >
-              Kontak
-            </a>
+          <nav className="hidden lg:flex items-center justify-center flex-1">
+            <div className="flex items-center space-x-6">
+              <Link 
+                href="/" 
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 relative"
+              >
+                Beranda
+              </Link>
+              <a 
+                href="/#about" 
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 relative"
+              >
+                Tentang
+              </a>
+              <a 
+                href="/#vision" 
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 relative"
+              >
+                Visi Misi
+              </a>
+              <Link 
+                href="/products" 
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 relative"
+              >
+                Produk
+              </Link>
+              <a 
+                href="/#contact" 
+                className="px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 relative"
+              >
+                Kontak
+              </a>
+            </div>
           </nav>
 
-          {/* Mobile Menu Button - Right */}
-          <div className="flex items-center justify-end">
+          {/* Mobile Menu Button */}
+          <div className="flex items-center lg:hidden">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+              className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+              aria-expanded={isMobileMenuOpen}
+              aria-label="Toggle navigation menu"
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMobileMenuOpen ? (
@@ -78,44 +82,46 @@ export default function Navbar() {
 
         {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-gray-100">
-            <nav className="flex flex-col space-y-2">
-              <Link 
-                href="/" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Beranda
-              </Link>
-              <a 
-                href="/#about" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Tentang
-              </a>
-              <a 
-                href="/#vision" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Visi Misi
-              </a>
-              <Link 
-                href="/products" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Produk
-              </Link>
-              <a 
-                href="/#contact" 
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Kontak
-              </a>
-            </nav>
+          <div className="lg:hidden">
+            <div className="border-t border-gray-100 bg-white/98 backdrop-blur-sm">
+              <nav className="px-4 py-4 space-y-2">
+                <Link 
+                  href="/" 
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 active:bg-red-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Beranda
+                </Link>
+                <a 
+                  href="/#about" 
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 active:bg-red-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Tentang
+                </a>
+                <a 
+                  href="/#vision" 
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 active:bg-red-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Visi Misi
+                </a>
+                <Link 
+                  href="/products" 
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 active:bg-red-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Produk
+                </Link>
+                <a 
+                  href="/#contact" 
+                  className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all duration-200 active:bg-red-100"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Kontak
+                </a>
+              </nav>
+            </div>
           </div>
         )}
       </div>
