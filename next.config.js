@@ -1,9 +1,4 @@
 module.exports = {
-  // Explicit path mapping untuk memastikan resolusi bekerja di server
-  experimental: {
-    // Membantu dengan resolusi module
-    externalDir: true,
-  },
   images: {
     domains: ['192.168.1.22', 'localhost', 'autoclean.pusatweb.cloud'],
     remotePatterns: [
