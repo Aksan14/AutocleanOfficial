@@ -59,7 +59,7 @@ export default function AdminLogin() {
         }
       }
       setError(json.message || 'Login gagal, silakan cek username dan password.');
-    } catch (err) {
+    } catch {
       setError('Gagal login, silakan coba lagi.');
     } finally {
       setLoading(false);

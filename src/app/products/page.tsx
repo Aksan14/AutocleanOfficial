@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProductCard from "../../components/ProductCard";
@@ -42,10 +41,6 @@ export default function Products() {
 
   const handleProductClick = (product: Product) => {
     router.push(`/products/${product.id}`);
-  };
-
-  const handleImageError = (productId: string | number) => {
-    setImageErrors(prev => new Set(prev).add(String(productId)));
   };
 
   const getImageSrc = (product: Product) => {

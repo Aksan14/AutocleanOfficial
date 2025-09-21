@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from "next/image";
 import Link from "next/link";
 import AuthGuard from "../../../components/AuthGuard";
-import { fetchBarangList, deleteBarang, BASE_URL } from "../../../utils/api";
+import { fetchBarangList, deleteBarang } from "../../../utils/api";
 
 // Helper function to get API URL with proper client-side handling
 const getApiUrl = () => {
@@ -469,7 +469,7 @@ function CreateUserForm() {
       } else {
         setMessage(json.message || "Gagal membuat user");
       }
-    } catch (err) {
+    } catch {
       setMessage("Gagal membuat user");
     }
     setLoading(false);
@@ -548,7 +548,7 @@ function ChangePasswordForm() {
       } else {
         setMessage(json.message || "Gagal mengubah password");
       }
-    } catch (err) {
+    } catch {
       setMessage("Gagal mengubah password");
     }
     setLoading(false);
@@ -653,7 +653,7 @@ function ProductsManagementContent() {
           console.log('Testing first product image URL:', firstImageUrl);
           testImageUrl(firstImageUrl);
         }
-      } catch (err) {
+      } catch {
         // TODO: handle error
       }
       setLoading(false);
@@ -682,7 +682,7 @@ function ProductsManagementContent() {
     try {
       await deleteBarang(confirmModal.productId);
       setProducts(products.filter(p => p.id !== confirmModal.productId));
-    } catch (err) {
+    } catch {
       // TODO: handle error
     }
     setConfirmModal({ isOpen: false, productId: null, productName: "" });
