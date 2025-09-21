@@ -641,6 +641,9 @@ function ProductsManagementContent() {
   });
 
   useEffect(() => {
+    // Set document title on component mount
+    document.title = "Auto Clean | Admin Dashboard";
+    
     async function loadProducts() {
       setLoading(true);
       try {

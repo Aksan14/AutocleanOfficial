@@ -1,11 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePageTitle } from '../../../hooks/usePageTitle';
 
 export default function AdminLogin() {
+  // Set document title using custom hook
+  usePageTitle("Auto Clean | Admin Login");
+
   const router = useRouter();
   const [formData, setFormData] = useState({
     username: '',

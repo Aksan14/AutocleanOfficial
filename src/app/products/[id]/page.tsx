@@ -7,8 +7,12 @@ import Link from "next/link";
 import Navbar from "../../../components/Navbar";
 import Footer from "../../../components/Footer";
 import { fetchBarangList } from "../../../utils/api";
+import { usePageTitle } from "../../../hooks/usePageTitle";
 
 export default function ProductDetail() {
+  // Set document title using custom hook
+  usePageTitle("Auto Clean | Product Detail");
+
   type Product = {
     id: string | number;
     nama_barang: string;

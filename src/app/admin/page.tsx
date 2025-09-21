@@ -7,6 +7,9 @@ export default function AdminPage() {
   const router = useRouter();
 
   useEffect(() => {
+    // Set document title
+    document.title = "Auto Clean | Admin Dashboard";
+    
     // Redirect langsung ke halaman products
     router.replace('/admin/products');
   }, [router]);

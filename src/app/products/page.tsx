@@ -3,12 +3,17 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Head from "next/head";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import ProductCard from "../../components/ProductCard";
 import { fetchBarangList } from "../../utils/api";
+import { usePageTitle } from "../../hooks/usePageTitle";
 
 export default function Products() {
+  // Set document title using custom hook
+  usePageTitle("Auto Clean | Products");
+
   type Product = {
     id: string | number;
     nama_barang: string;
