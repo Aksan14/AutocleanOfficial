@@ -226,7 +226,7 @@ export default function Home() {
             </div>
             <h2 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4">
               Mari Berdiskusi tentang
-              <span className="text-red-600">Kebutuhan Anda</span>
+              <span className="text-red-600"> Kebutuhan Anda</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Tim ahli kami siap membantu Anda memilih produk perawatan kendaraan yang tepat
