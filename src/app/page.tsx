@@ -288,7 +288,7 @@ export default function Home() {
               <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-4">Lokasi</h3>
               <p className="text-gray-600 mb-6 leading-relaxed">Kunjungi toko fisik kami</p>
               <div className="text-red-600 font-semibold">
-                <p>Jakarta Selatan</p>
+                <p>Makassar</p>
                 <p>Indonesia</p>
               </div>
             </div>

@@ -81,7 +81,7 @@ Terima kasih telah memesan di AutoClean Official!
     `.trim();
 
     // Open WhatsApp
-    const whatsappUrl = `https://wa.me/62895406210356?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/62881082566729?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 
     // Reset form

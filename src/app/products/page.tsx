@@ -149,7 +149,7 @@ export default function Products() {
                   name={product.nama_barang}
                   price={product.harga_formatted}
                   image={getImageSrc(product)}
-                  whatsappNumber="62895406210356"
+                  whatsappNumber="62881082566729"
                   tiktokShopUrl={product.link_tiktokshop}
                   shopeeUrl={product.link_shopee}
                   onClick={() => handleProductClick(product)}
@@ -179,7 +179,7 @@ export default function Products() {
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <a
-                    href="https://wa.me/62895406210356?text=Halo,%20saya%20butuh%20bantuan%20memilih%20produk%20AutoClean"
+                    href="https://wa.me/62881082566729?text=Halo,%20saya%20butuh%20bantuan%20memilih%20produk%20AutoClean"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group flex items-center justify-center px-8 py-4 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
